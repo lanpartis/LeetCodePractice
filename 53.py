@@ -4,20 +4,12 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums)==0:
-            return 0
-        prev = nums[0]
-        maxi = prev
-        for i in range(1,len(nums)):
-            now = self.get_max_array(prev,nums[i])
-            if now>maxi:
-                maxi = now
-            prev = now
-        return maxi
-
-    def get_max_array(self,prev,n_ele):
-        if prev<=0:
-            now = n_ele
-        else:
-            now = prev+n_ele
-        return now
+        res = nums[0] 
+        running_sum=0
+        for i in nums:
+            running_sum+=i
+            if running_sum>res:
+                res = running_sum
+            if running_sum<0:
+                running_sum=0
+        return res
